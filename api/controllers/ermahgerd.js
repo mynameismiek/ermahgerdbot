@@ -9,21 +9,22 @@ module.exports = {
     ermahgerd: ermahgerd
 };
 
-var checkToken = function (req, res, cb) {
+function checkToken(req, res, cb) {
     var keyParam = req.swagger.params.token.value;
 
     if (keyParam === token) {
-        return cb ("", "VERLERD TERKERN RERCERVERD.");
+        return cb("", "VERLERD TERKERN RERCERVERD.");
     } else {
         return cb("ERER: SERER, DA TERKERN KER ERS ERNVERLERD.");
     }
-};
+}
 
 function ermahgerd(req, res) {
-    checkToken(req, res, function(err, reply) {
-        if (err) {
-            return res.json(err);
-        } else if (req.swagger.params.text.value === "") {
+    //checkToken(req, res, function(err, reply) {
+    //    if (err) {
+    //        return res.json(err);
+//        } else
+        if (req.swagger.params.text.value === "") {
             res.json("PLERS ERNTER SERM TERXT TER ERMAHGERD!");
         } else {
             console.log(reply);
@@ -41,7 +42,7 @@ function ermahgerd(req, res) {
             res.status(200).type('application/json').end();
         }
     });
-};
+}
 
 var translateText = function (text) {
     text = text.toUpperCase();
