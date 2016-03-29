@@ -1,6 +1,5 @@
 'use strict';
 
-var util = require('util');
 var request = require('request');
 var token = "ghWEn36IpyWNLoxSWF5MIEq6";
 var URL = "https://hooks.slack.com/services/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";
@@ -9,39 +8,23 @@ module.exports = {
     ermahgerd: ermahgerd
 };
 
-function checkToken(req, res, cb) {
-    var keyParam = req.swagger.params.token.value;
-
-    if (keyParam === token) {
-        return cb("", "VERLERD TERKERN RERCERVERD.");
-    } else {
-        return cb("ERER: SERER, DA TERKERN KER ERS ERNVERLERD.");
-    }
-}
-
 function ermahgerd(req, res) {
-    //checkToken(req, res, function(err, reply) {
-    //    if (err) {
-    //        return res.json(err);
-//        } else
-        if (req.swagger.params.text.value === "") {
-            res.json("PLERS ERNTER SERM TERXT TER ERMAHGERD!");
-        } else {
-            //console.log(reply);
-            var newText = '@' + req.swagger.params.user_name.value + ' sers, "'
-                    + translateText(req.swagger.params.text.value)
+    if (req.swagger.params.text.value === "") {
+        res.json("PLERS ERNTER SERM TERXT TER ERMAHGERD!");
+    } else {
+        var newText = '@' + req.swagger.params.user_name.value + ' sers, "'
+            + translateText(req.swagger.params.text.value)
                     + '"';
-            request.post({
-                url: URL,
-                body: {
-                    "text": newText,
-                    "channel": '#' + req.swagger.params.channel_name.value
-                },
-                json: true
-            });
-            res.status(200).type('application/json').end();
-        }
-    //});
+        request.post({
+            url: URL,
+            body: {
+                "text": newText,
+                "channel": '#' + req.swagger.params.channel_name.value
+            },
+            json: true
+        });
+        res.json(req.swagger.params.text.value);
+    }
 }
 
 var translateText = function (text) {
@@ -73,36 +56,6 @@ var translateText = function (text) {
     }
 
     return translatedLines.join("\n");
-};
-
-var str_split = function(string, split_length) {
-    // http://kevin.vanzonneveld.net
-    // +     original by: Martijn Wieringa
-    // +     improved by: Brett Zamir (http://brett-zamir.me)
-    // +     bugfixed by: Onno Marsman
-    // +      revised by: Theriault
-    // +        input by: Bjorn Roesbeke (http://www.bjornroesbeke.be/)
-    // +      revised by: Rafał Kukawski (http://blog.kukawski.pl/)
-    // *       example 1: str_split('Hello Friend', 3);
-    // *       returns 1: ['Hel', 'lo ', 'Fri', 'end']
-    if (split_length === null) {
-        split_length = 1;
-    }
-
-    if (string === null || split_length < 1) {
-        return false;
-    }
-
-    string += '';
-    var chunks = [],
-        pos = 0,
-        len = string.length;
-
-    while (pos < len) {
-        chunks.push(string.slice(pos, pos += split_length));
-    }
-
-    return chunks;
 };
 
 var translate = function(word) {
