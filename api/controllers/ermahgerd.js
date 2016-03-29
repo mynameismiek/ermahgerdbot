@@ -31,14 +31,14 @@ function ermahgerd(req, res) {
                     + translateText(req.swagger.params.text.value)
                     + '"';
             request.post({
-                url:URL,
+                url: URL,
                 body: {
                     "text": newText,
                     "channel": '#' + req.swagger.params.channel_name.value
                 },
                 json: true
             });
-            res.send(200).type('application/json').end();
+            //res.send(200).type('application/json').end();
         }
     });
 };
