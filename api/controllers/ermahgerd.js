@@ -38,7 +38,7 @@ function ermahgerd(req, res) {
                 },
                 json: true
             });
-            //res.send(200).type('application/json').end();
+            res.status(200); //.type('application/json').end();
         }
     });
 };
