@@ -36,9 +36,9 @@ function ermahgerd(req, res) {
                     "text": newText,
                     "channel": '#' + req.swagger.params.channel_name.value
                 },
-                json:true
+                json: true
             });
-            res.status(200).type('application/json').end();
+            res.status(200); //.type('application/json').end();
         }
     });
 };
