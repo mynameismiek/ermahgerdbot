@@ -23,7 +23,7 @@ function ermahgerd(req, res) {
             },
             json: true
         });
-        res.json(req.swagger.params.text.value);
+        res.json("Original text: " + req.swagger.params.text.value);
     }
 }
 
