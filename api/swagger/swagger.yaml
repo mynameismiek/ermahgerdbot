@@ -40,9 +40,9 @@ paths:
       responses:
         "200":
           description: Success
-          #schema:
+          schema:
             # a pointer to a definition
-            #$ref: "#/definitions/Message"
+            $ref: "#/definitions/Message"
         # responses may fall through to errors
         default:
           description: Error
@@ -122,10 +122,10 @@ parameters:
     required: false
     type: string
 definitions:
-  #Message:
-  #  properties:
-  #    message:
-  #      type: string
+  Message:
+    properties:
+      message:
+        type: string
   ErrorResponse:
     required:
       - message
