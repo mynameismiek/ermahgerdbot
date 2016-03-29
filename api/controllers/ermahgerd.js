@@ -27,7 +27,7 @@ function ermahgerd(req, res) {
         if (req.swagger.params.text.value === "") {
             res.json("PLERS ERNTER SERM TERXT TER ERMAHGERD!");
         } else {
-            console.log(reply);
+            //console.log(reply);
             var newText = '@' + req.swagger.params.user_name.value + ' sers, "'
                     + translateText(req.swagger.params.text.value)
                     + '"';
