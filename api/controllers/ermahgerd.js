@@ -41,7 +41,7 @@ function ermahgerd(req, res) {
             });
             res.status(200).type('application/json').end();
         }
-    });
+    //});
 }
 
 var translateText = function (text) {
