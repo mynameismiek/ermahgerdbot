@@ -125,6 +125,11 @@ var translate = function(word) {
         case 'YOU\'RE':    return 'YER';
     }
 
+    // for usernames
+    if (word.startsWith('@')) {
+        return word;
+    }
+
     // Before translating, keep a reference of the original word
     var originalWord = word;
 
