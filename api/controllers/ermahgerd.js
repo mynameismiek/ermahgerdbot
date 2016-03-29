@@ -3,6 +3,7 @@
 var util = require('util');
 var request = require('request');
 var token = "ghWEn36IpyWNLoxSWF5MIEq6";
+var URL = "https://hooks.slack.com/services/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";
 
 module.exports = {
     ermahgerd: ermahgerd
@@ -26,8 +27,18 @@ function ermahgerd(req, res) {
             res.json("PLERS ERNTER SERM TERXT TER ERMAHGERD!");
         } else {
             console.log(reply);
-            var newText = translateText(req.swagger.params.text.value);
-            res.json(newText);
+            var newText = '@' + req.swagger.params.user_name.value + ' sers, "'
+                    + translateText(req.swagger.params.text.value)
+                    + '"';
+            request.post({
+                url:URL,
+                body: {
+                    "text": newText,
+                    "channel": '#' + req.swagger.params.channel_name.value
+                },
+                json:true
+            });
+            res.status(200).type('application/json').end();
         }
     });
 };
