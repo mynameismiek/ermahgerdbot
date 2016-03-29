@@ -38,7 +38,7 @@ function ermahgerd(req, res) {
                 },
                 json: true
             });
-            res.end(); //json(''); //.type('application/json').end();
+            res.json('').end(); //.type('application/json').end();
         }
     });
 };
@@ -57,7 +57,9 @@ var translateText = function (text) {
             var suffix = words[j].match(/\W+$/) || '';
             var word = words[j].replace(prefix, '').replace(suffix, '');
 
-            if (word) {
+            if (words[j].indexOf('@') != -1) {
+                translatedWords.push(words[j]);
+            } else if (word) {
                 // Is translatable
                 translatedWords.push(prefix + translate(word) + suffix);
             } else {
@@ -123,6 +125,7 @@ var translate = function(word) {
         case 'WE\'RE':     return 'WER';
         case 'YOU':        return 'U';
         case 'YOU\'RE':    return 'YER';
+        case 'TACO':       return 'TERCO';
     }
 
     // for usernames
